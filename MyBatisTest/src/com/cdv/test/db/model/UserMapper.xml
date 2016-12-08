@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdv.test.db.UserMapper">
+    <resultMap type="com.cdv.test.db.model.Role" id="rmapRole">
+        <id property="roleName" column="rolename" />
+        <result property="roleConfig" column="roleconfig" />
+        <result property="readOnly" column="readonly" />
+    </resultMap>
+
+    <resultMap type="com.cdv.test.db.model.User" id="rmapUser">
+        <id property="userId" column="userid" />
+        <result property="userName" column="username" />
+        <result property="password" column="password" />
+        <result property="roleName" column="rolename" />
+        <result property="departmentId" column="departmentid" />
+        <result property="email" column="email" />
+        <result property="cellphone" column="cellphone" />
+        <result property="telphone" column="telphone" />
+        <result property="columns" column="columns" />
+        <result property="disabled" column="disabled" />
+        <result property="readOnly" column="readonly" />
+    </resultMap>
+
+    <select id="getUserByUserId" resultMap="rmapUser">
+        SELECT 
+            userid,username,password,rolename,departmentid,
+            email,cellphone,telphone,columns,disabled,readonly
+        FROM bf_user
+        WHERE userid=#{userId}
+    </select>
+    <select id="getUserByEmail" resultMap="rmapUser">
+        SELECT 
+            userid,username,password,rolename,departmentid,
+            email,cellphone,telphone,columns,disabled,readonly
+        FROM bf_user
+        WHERE email=#{email}
+    </select>
+    <select id="getUserCellPhone" resultMap="rmapUser">
+        SELECT 
+            userid,username,password,rolename,departmentid,
+            email,cellphone,telphone,columns,disabled,readonly
+        FROM bf_user
+        WHERE cellphone=#{cellphone}
+    </select>
+
+    <select id="getRole" resultMap="rmapRole">
+        SELECT rolename,roleconfig,readonly
+        FROM bf_role
+        WHERE rolename=#{roleName}
+    </select>
+</mapper>

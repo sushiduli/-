@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="sun-wei" id="20131128-test-initdata">
+
+        <!-- 初始化角色 -->
+        <insert tableName="bf_role">
+            <column name="rolename" value="系统管理员" />
+            <column name="readonly" valueBoolean="true" />
+        </insert>
+        <insert tableName="bf_role">
+            <column name="rolename" value="维护管理员" />
+            <column name="readonly" valueBoolean="true" />
+        </insert>
+
+        <!-- 初始化用户 -->
+        <insert tableName="bf_user">
+            <column name="userid" value="admin" />
+            <column name="username" value="系统管理员" />
+            <column name="password" value="111111" />
+            <column name="rolename" value="系统管理员" />
+            <column name="disabled" valueBoolean="false" />
+            <column name="readonly" valueBoolean="true" />
+        </insert>
+        <insert tableName="bf_user">
+            <column name="userid" value="manager" />
+            <column name="username" value="维护管理员" />
+            <column name="password" value="111111" />
+            <column name="rolename" value="维护管理员" />
+            <column name="disabled" valueBoolean="false" />
+            <column name="readonly" valueBoolean="true" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

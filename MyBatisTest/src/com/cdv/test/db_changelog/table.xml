@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <!-- OOOOOO注意: 本文件不要格式化OOOOOO -->
+
+    <changeSet author="sun-wei" id="20131128-test" context="production">
+        <createTable tableName="bf_role">
+            <column name="rolename" type="NVARCHAR(100)"><constraints nullable="false" primaryKey="true" primaryKeyName="PK_ROLE" /></column>
+            <column name="roleconfig" type="TEXT"></column>
+            <column name="readonly" type="TINYINT"><constraints nullable="false" /></column>
+        </createTable>
+        <createTable tableName="bf_user">
+            <column name="userid" type="NVARCHAR(100)"><constraints nullable="false" primaryKey="true" primaryKeyName="PK_USER" /></column>
+            <column name="username" type="NVARCHAR(100)"><constraints nullable="false" /></column>
+            <column name="password" type="NVARCHAR(32)"><constraints nullable="false" /></column>
+            <column name="rolename" type="NVARCHAR(100)"><constraints nullable="false" /></column>
+            <column name="departmentid" type="NVARCHAR(100)"></column>
+            <column name="email" type="NVARCHAR(255)"></column>
+            <column name="cellphone" type="NVARCHAR(14)"></column>
+            <column name="telphone" type="NVARCHAR(20)"></column>
+            <column name="columns" type="TEXT"></column>
+            <column name="disabled" type="TINYINT"><constraints nullable="false" /></column>
+            <column name="readonly" type="TINYINT"><constraints nullable="false" /></column>
+        </createTable>
+      <!--   <createTable tableName="bf_file">
+            <column name="fileid" type="NVARCHAR(36)"><constraints nullable="false" primaryKey="true" primaryKeyName="PK_FILE" /></column>
+            <column name="cargoid" type="NVARCHAR(36)"><constraints nullable="false" /></column>
+            <column name="filename" type="NVARCHAR(512)"><constraints nullable="false" /></column>
+            <column name="filepath" type="NVARCHAR(2048)"></column>
+            <column name="filesize" type="BIGINT"><constraints nullable="false" /></column>
+            <column name="createtime" type="DATETIME"><constraints nullable="false" /></column>
+            <column name="lastmodify" type="DATETIME"><constraints nullable="false" /></column>
+            <column name="uploadtime" type="DATETIME"></column>
+            <column name="uploadedtime" type="DATETIME"></column>
+            <column name="hash" type="NVARCHAR(32)"></column>
+            <column name="infected" type="TINYINT"><constraints nullable="false" /></column>
+        </createTable>
+        <createTable tableName="bf_synctask">
+            <column name="syncid" type="BIGINT"><constraints nullable="false" primaryKey="true" primaryKeyName="PK_SYNCTASK" /></column>
+            <column name="synctime" type="DATETIME"><constraints nullable="false" /></column>
+            <column name="syncitem" type="INT"><constraints nullable="false" /></column>
+            <column name="syncobject" type="NVARCHAR(100)"></column>
+            <column name="syncmethod" type="INT"><constraints nullable="false" /></column>
+            <column name="handler" type="NVARCHAR(100)"></column>
+            <column name="handletime" type="DATETIME"></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="sun-wei" id="20131230-test" context="production">
+        <createTable tableName="bf_session">
+            <column name="sessionid" type="BIGINT"><constraints nullable="false" primaryKey="true" primaryKeyName="PK_SESSION" /></column>
+            <column name="userid" type="NVARCHAR(100)"><constraints nullable="false" /></column>
+            <column name="username" type="NVARCHAR(100)"><constraints nullable="false" /></column>
+            <column name="hostname" type="NVARCHAR(100)" />
+            <column name="logontime" type="DATETIME"><constraints nullable="false" /></column>
+            <column name="lastupdate" type="DATETIME"><constraints nullable="false" /></column>
+        </createTable>
+        <createTable tableName="bf_sessionlog">
+            <column name="sessionid" type="BIGINT"><constraints nullable="false" primaryKey="true" primaryKeyName="PK_SESSIONLOG" /></column>
+            <column name="userid" type="NVARCHAR(100)"><constraints nullable="false" /></column>
+            <column name="username" type="NVARCHAR(100)"><constraints nullable="false" /></column>
+            <column name="hostname" type="NVARCHAR(100)" />
+            <column name="logontime" type="DATETIME"><constraints nullable="false" /></column>
+            <column name="lastupdate" type="DATETIME"><constraints nullable="false" /></column>
+            <column name="logofftime" type="DATETIME"><constraints nullable="false" /></column>
+        </createTable>
+        <createSequence sequenceName="BF_SQ_SESSIONID" startValue="0" incrementBy="1" />
+    </changeSet>
+
+    <changeSet author="sun-wei" id="20140107-test" context="production">
+        <addColumn tableName="bf_synctask">
+            <column name="content" type="TEXT"></column>
+        </addColumn>
+        <createSequence sequenceName="BF_SQ_SYNCTASKID" startValue="0" incrementBy="1" />
+    </changeSet>
+
+    <changeSet author="sun-wei" id="20140109-test" context="production">
+        <modifyDataType tableName="bf_file" columnName="hash" newDataType="NVARCHAR(50)"/>
+        <addColumn tableName="bf_file">
+            <column name="infection" type="TEXT"></column>
+        </addColumn> -->
+    </changeSet>
+</databaseChangeLog>
