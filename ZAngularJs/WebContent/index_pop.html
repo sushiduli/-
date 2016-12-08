@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>AngularUI</title> 
+       
+    <!-- Styles -->
+    <link rel="stylesheet" href="jc/jquery-ui.css">
+    <link rel="stylesheet" href="3rd/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="3rd/bootstrap/css/bootstrap-theme.min.css">
+     <script type="text/javascript" src="jc/jquery.min.js"></script>
+    <script type="text/javascript" src="jc/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="jc/angular.min.js"></script>
+    <script type="text/javascript" src="3rd/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="3rd/ui-bootstrap-tpls.min.js"></script>
+  </head>
+
+  <body ng-app="App_POP">
+    <div   style="margin:120px 120px 120px" ng-controller='MyCtrl'>
+    	
+    	<script type="text/ng-template" id="modifyWeight.html">
+				<div>			
+				<input type="text" data-ng-model="ipt"/>
+				<button class="btn" data-ng-click="show()"><i class="ace-icon fa fa-check bigger-120"></i></button>
+				</div>	
+		</script>
+		
+		<a href="javascript:;" popover-trigger="click" uib-popover-title="赋予 " data-placement="left" 
+			uib-popover-template="'modifyWeight.html'" popover-append-to-body="true">
+											{{data}}
+		</a>    
+	 </div>
+	 
+	 <script>
+	 	 angular.module('App_POP',["ui.bootstrap"])
+	 	 .controller('MyCtrl', function($scope){
+	 			$scope.data = "点一下试试";
+	 	 		$scope.ipt = "12312";
+	 	 		
+	 	 		$scope.show = function(){
+	 	 			console.log($scope.ipt);
+	 	 		}
+	 	 }
+	 	 );
+	 
+	 </script>
+  </body>
+
+</html>
