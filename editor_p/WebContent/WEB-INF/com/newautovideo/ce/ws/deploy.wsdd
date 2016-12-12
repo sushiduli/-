@@ -1,0 +1,73 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CEService WSDL service -->
+
+  <service name="CEPort" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://newautovideo.com/ce/ws"/>
+      <parameter name="wsdlServiceElement" value="CEService"/>
+      <parameter name="schemaQualified" value="http://newautovideo.com/ce/ws"/>
+      <parameter name="wsdlServicePort" value="CEPort"/>
+      <parameter name="className" value="com.newautovideo.ce.ws.CEBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="CEPortType"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://newautovideo.com/ce/ws"
+        qname="ns:>>getProgramRequest>BroadcastTime"
+        type="java:com.newautovideo.ce.ws.GetProgramRequestBroadcastTime"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://newautovideo.com/ce/ws"
+        qname="ns:ProgramType"
+        type="java:com.newautovideo.ce.ws.ProgramType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://newautovideo.com/ce/ws"
+        qname="ns:>setProgramStatusResponse"
+        type="java:com.newautovideo.ce.ws.SetProgramStatusResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://newautovideo.com/ce/ws"
+        qname="ns:>getProgramResponse"
+        type="java:com.newautovideo.ce.ws.ProgramType[]"
+        innerType="cmp-ns:ProgramType" xmlns:cmp-ns="http://newautovideo.com/ce/ws"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://newautovideo.com/ce/ws"
+        qname="ns:>getProgramRequest"
+        type="java:com.newautovideo.ce.ws.GetProgramRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://newautovideo.com/ce/ws"
+        qname="ns:>setProgramStatusRequest"
+        type="java:com.newautovideo.ce.ws.SetProgramStatusRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

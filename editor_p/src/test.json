@@ -1,0 +1,14 @@
+[
+	{
+		"programCode":"123",
+		"programName":"456",
+		"status": 0,
+		"statusDesc":"未绑定"
+	},
+	{
+		"programCode":"789",
+		"programName":"123",
+		"status": 1,
+		"statusDesc":"已绑定"
+	}
+]

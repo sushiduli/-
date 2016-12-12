@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ce="http://newautovideo.com/ce/ws" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://newautovideo.com/ce/ws">
+	<xs:element name="getProgramRequest">
+		<xs:annotation>
+			<xs:documentation>获取节目信息</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="BroadcastDate" type="xs:date">
+					<xs:annotation>
+						<xs:documentation>播出日期</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="BroadcastTime">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Start" type="xs:long">
+								<xs:annotation>
+									<xs:documentation>播出时间（单位：帧）</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="End" type="xs:long">
+								<xs:annotation>
+									<xs:documentation>播出时间（单位：帧）</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="ChannelName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>频道名称</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="Column" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>栏目名称</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="ProgramName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>节目名称</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="ProgramType" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>节目类型：无、广告类、导视类</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="ProgramCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>节目代码</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getProgramResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Program" type="ce:ProgramType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setProgramStatusRequest">
+		<xs:annotation>
+			<xs:documentation>设置节目状态</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ProgramCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>节目代码</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Status" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>0-未绑定，1-已绑定</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setProgramStatusResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Result" type="xs:int">
+					<xs:annotation>
+						<xs:documentation>0-成功，-1-失败</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Description" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>错误描述</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ProgramType">
+		<xs:annotation>
+			<xs:documentation>节目</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BroadcastDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>播出日期</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>频道名称</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProgramName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>节目名称</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BroadcastTime" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>播出时间（单位：帧）</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Column" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>栏目名称</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProgramType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>节目类型</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProgramCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>节目代码</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Length" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>预计时长（单位：帧）</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BroadcastMode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>播出模式</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Replay" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>首播、重播</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Status" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>绑定状态</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GroupName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>时段名称</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EditCloseTime" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>关门时间</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

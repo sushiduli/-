@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns="http://newautovideo.com/ce/ws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:y="http://newautovideo.com/ce/ws" targetNamespace="http://newautovideo.com/ce/ws">
+	<types>
+		<xs:schema xmlns:ce="http://newautovideo.com/ce/ws">
+			<xs:import namespace="http://newautovideo.com/ce/ws" schemaLocation="ce.xsd"/>
+		</xs:schema>
+	</types>
+	<message name="getProgramRequest">
+		<part element="ns:getProgramRequest" name="inp"/>
+	</message>
+	<message name="getProgramResponse">
+		<part element="ns:getProgramResponse" name="outp"/>
+	</message>
+	<message name="setProgramStatusRequest">
+		<part element="ns:setProgramStatusRequest" name="inp"/>
+	</message>
+	<message name="setProgramStatusResponse">
+		<part element="ns:setProgramStatusResponse" name="outp"/>
+	</message>
+	<portType name="CEPortType">
+		<operation name="getProgram">
+			<input message="y:getProgramRequest"/>
+			<output message="y:getProgramResponse"/>
+		</operation>
+		<operation name="setProgramStatus">
+			<input message="y:setProgramStatusRequest"/>
+			<output message="y:setProgramStatusResponse"/>
+		</operation>
+	</portType>
+	<binding name="CEBinding" type="y:CEPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getProgram">
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="setProgramStatus">
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="CEService">
+		<port binding="y:CEBinding" name="CEPort">
+			<soap:address location="http://localhost:8080/editor_p/services/CEPort"/>
+		</port>
+	</service>
+</definitions>
