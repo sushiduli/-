@@ -1,0 +1,7 @@
+repositoryIvyUrl = http://59.110.13.159:18080/nexus/content/groups/public/
+repositoryMavenUrl = http://59.110.13.159:18080/nexus/content/groups/public/
+repositoryUsername = user01
+repositoryPassword = user01`12
+
+systemProp.maven.wagon.http.ssl.insecure = true
+systemProp.maven.wagon.http.ssl.allowall = true

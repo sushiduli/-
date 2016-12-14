@@ -1,0 +1,28 @@
+apply plugin: 'spring-boot'
+apply plugin: 'application'
+
+distributions {
+    main {
+        contents {
+			from ("${projectDir}/config/examples") {
+                into "config"
+            }
+        }
+    }
+}
+
+distTar.enabled = false
+
+springBoot {
+    mainClass = 'com.cdv.eo.servers.Editoroffice'
+}
+
+dependencies {
+	compile project(':eo-common')
+	
+	// Central
+	compile 'com.cdv.nsite.central:nsite-central-common:3.0.0-SNAPSHOT'
+	compile 'com.cdv.nsite.central:nsite-central-config:3.0.0-SNAPSHOT'
+	compile 'com.cdv.nsite.central:nsite-central-manager:3.0.0-SNAPSHOT'
+	compile 'com.cdv.nsite.central:nsite-central-stationManager:3.0.0-SNAPSHOT'
+}

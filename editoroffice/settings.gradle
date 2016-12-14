@@ -1,0 +1,4 @@
+include ':eo-common',
+	':eo-servers'
+	
+rootProject.name = 'editoroffice'
