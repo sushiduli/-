@@ -1,0 +1,17 @@
+server:
+  port: 68080
+  contextPath: /eo
+  
+logging:
+  config: ./config/logback-spring.xml
+  
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017
+#       username:
+#       password:      
+      database: nsitedb_v3
+  http:
+    multipart:
+      enabled: false

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder />
+
+	<!-- ZooKeeper Based Discovery 使用Zookeeper完成各个服务节点的发现 -->
+	<!--<bean id="tcpDiscoveryZookeeperIpFinder" class="org.apache.ignite.spi.discovery.tcp.ipfinder.zk.TcpDiscoveryZookeeperIpFinder"> 
+		<property name="zkConnectionString" value="${zkHost:127.0.0.1:2181}" /> </bean> -->
+
+	<!-- Static IP Based Discovery -->
+	<bean id="tcpDiscoveryVmIpFinder"
+		class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+		<property name="addresses">
+			<list>
+				<!-- 为了当集群中没有其他节点时，本节点也可以启动并能正常操作，建议为本节点设置一个可用的本地IP地址。 如果需要可以为该地址指定具体的端口或者端口范围。 -->
+				<value>127.0.0.1</value>
+
+				<!-- 其他集群节点的IP地址。设置时可以通过xxx.xxx.xxx.xxx:47500的方式指定具体的端口，或通过xxx.xxx.xxx.xxx:47500..47509的方式指定IP地址范围。 
+					！为了加快启动建议直接指定具体端口，而不是端口范围！
+				<value>10.7.6.67:47500</value>-->
+			</list>
+		</property>
+	</bean>
+
+	<!-- 如果有多个服务器使用Ignite，一定要确保防火墙放开该端口 -->
+	<bean id="tcpDiscoverySpi" class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+		<property name="ipFinder" ref="tcpDiscoveryVmIpFinder" />
+		<property name="localPort" value="47500" />
+		<property name="localPortRange" value="0" />
+	</bean>
+
+	<!-- 如果有多个服务器使用Ignite，一定要确保防火墙放开该端口 -->
+	<bean id="tcpCommunicationSpi"
+		class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
+		<property name="localPort" value="47100" />
+		<property name="localPortRange" value="100" />
+	</bean>
+
+	<bean id="cacheCheckpointSpi"
+		class="org.apache.ignite.spi.checkpoint.cache.CacheCheckpointSpi">
+		<property name="cacheName" value="Ignite.Cahce4CacheCheckpointSpi" />
+	</bean>
+
+	<bean id="grid.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+		
+		<!-- 客户端模式 -->
+		<property name="clientMode" value="true" />
+
+		<!-- Grid Name -->
+		<property name="gridName" value="${ignite.gridName:Ignite.nSite}" />
+
+		<!-- Logger -->
+		<property name="gridLogger">
+			<bean class="org.apache.ignite.logger.slf4j.Slf4jLogger" />
+		</property>
+
+		<property name="marshaller">
+			<bean class="org.apache.ignite.marshaller.optimized.OptimizedMarshaller" />
+		</property>
+
+
+		<!-- 单服务器时可以使用127.0.0.1，多服务器部署时如果有其他计算机加入Ignite，务必填写本机可用的IP地址。 正确填写该属性后，可以有效避免单机多ip造成的混乱。 -->
+		<property name="localHost" value="127.0.0.1" />
+
+		<!-- Explicitly configure TCP communication SPI changing local port number 
+			for the nodes from the first cluster. -->
+		<property name="communicationSpi" ref="tcpCommunicationSpi" />
+
+		<!-- Explicitly configure TCP discovery SPI to provide list of initial 
+			nodes. -->
+		<property name="discoverySpi" ref="tcpDiscoverySpi" />
+
+		<!-- 输出运行状态数据的频率，0表示不输出 -->
+		<property name="metricsLogFrequency" value="0" />
+
+		<property name="swapSpaceSpi">
+			<bean class="org.apache.ignite.spi.swapspace.file.FileSwapSpaceSpi">
+				<property name="baseDirectory" value="./data/ignite" />
+			</bean>
+		</property>
+
+	</bean>
+</beans>
