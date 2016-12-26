@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <changeSet author="sun-wei" id="20131128-test-initdata">
+    <changeSet author="test" id="20170128-test-initdata">
 
         <!-- 初始化角色 -->
         <insert tableName="bf_role">

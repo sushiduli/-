@@ -21,12 +21,6 @@ public class MyTestServlet extends HttpServlet {
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write("Hello World, Getter");
-        
-        //PrintWriter out = response.getWriter();  
-        //  out.println("Hello,Spring.Servlet");
-        
-        //  response.sendRedirect("get.jsp");
-
     }
 
     @Override
