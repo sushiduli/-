@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+		<title>消费特征</title>
+
+		<link rel="stylesheet" href="css/info.css" />
+<style type="text/css">
+			 .content {
+				width: 100%;
+				min-width:800px;
+				height: 600px;
+				text-align: center;
+				margin: 0 auto;
+				background:  #908F94;
+			}
+			.content1 {
+				width: 20%;
+				padding: 20px 20px 0px 20px;
+				display: none;
+				float: left;
+			}
+			.content2 {
+				float: left;
+				height: 600px;
+				width: 76%;
+				float: left;
+				position:relative;
+			}
+			
+			.content3 {
+				background-color: #908F94;
+				float: left;
+				height: 600px;
+				width: 100%;
+				margin-left: 20px;
+				position:absolute;
+			}
+		</style>
+
+		<script type="text/javascript" src="js/texiao.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+	</head>
+
+	<body >
+
+		
+		<div class="navleft" >
+			<ul>
+				<li>
+					<a href="index.html"><img src="img/page1_main.png" border="none" /></a>
+				</li>
+				<li>
+					<a href="index.html"><img src="img/page1_back.png" border="none" /></a>
+				</li>
+				<li style="margin-top: 50px;" class="navli" id="li1">
+					<div >
+						<a href="showuser.html">用户画像</a>
+					</div>
+				</li>
+				<li class="navli"  id="li2" >
+					<div>
+						<a href="lifeinfo.html">生活特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li3" >
+					<div >
+						<a href="regioninfo.html">地域特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li4" >
+					<div >
+						<a href="interestinfo.html">兴趣特征</a>
+					</div>
+				</li>
+				<li class="navliclick" style="margin-top: -10px;" id="li5" >
+					<div >
+						<a href="consumeinfo.html">消费特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li6" >
+					<div >
+						<a href="brandinfo.html">品牌特征</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="rcontent">
+			<div class="nav1">
+				<table>
+					<tr>
+						<td class="nav1td" align="left"><a>体育大数据平台</a></td>	
+						<td id="td1" class="nav1td2" align="center"><a  onclick="showchart(1)">成交行为</a></td>
+						<td id="td2" class="nav1td3" align="center"><a  onclick="showchart(2)">购物车行为</a></td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="nav2">
+				<table>
+					<tr>
+						<td class="nav2td" align="center"><a>商业决策</a></td>
+						<td><a id="yd" onclick="showyd()">引导页</a></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="content">
+
+				<div class="content1" id="div0">
+					当前引导页
+				</div>
+
+				<div class="content2" >
+					
+					<div class="content3" id="div2">
+					</div>
+					
+					<div class="content3" id="div1" >
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
+
+		<script src="js/build/dist/echarts.js"></script>
+		<script type="text/javascript">
+			// 路径配置
+			        require.config({
+			            paths: {
+			                echarts: 'js/build/dist'
+			            }
+			        });
+			        // 使用
+			        require(
+			            [
+			                'echarts',
+			                'echarts/chart/funnel',
+			                'echarts/chart/pie',
+			                'echarts/chart/line',
+			                'echarts/chart/bar'
+			            ],
+			            
+			            function (ec) {
+			                // 基于准备好的dom，初始化echarts图表
+			                var chart1 = ec.init(document.getElementById('div1')); 
+			                var chart2 = ec.init(document.getElementById('div2')); 
+							
+			                chart1.showLoading({
+			        		    text : '数据加载中.....',
+			        		    effect : 'spin',
+			        		    textStyle : {
+			        		        fontSize : 20
+			        		    }
+			        		});
+			                
+			            var option = {
+			            	    title : {
+			            	        text : '时间坐标折线图',
+			            	        subtext : 'dataZoom支持'
+			            	    },
+			            	    tooltip : {
+			            	        trigger: 'axis',
+			            	        formatter : function (params) {
+			            	            var date = new Date(params.value[0]);
+			            	            data = date.getFullYear() + '-'
+			            	                   + (date.getMonth() + 1) + '-'
+			            	                   + date.getDate() ;
+			            	            return data + '<br/>'
+			            	                   + params.value[1];
+			            	        }
+			            	    },
+			            	    toolbox: {
+			            	        show : true,
+			            	        feature : {
+			            	            mark : {show: true},
+			            	            dataView : {show: true, readOnly: false},
+			            	            restore : {show: true},
+			            	            saveAsImage : {show: true}
+			            	        }
+			            	    },
+			            	    dataZoom: {
+			            	        show: true,
+			            	        start : 70
+			            	    },
+			            	    legend : {
+			            	        data : ['series1']
+			            	    },
+			            	    grid: {
+			            	        y2: 80
+			            	    },
+			            	    xAxis : [
+			            	        {
+			            	            type : 'time',
+			            	            splitNumber:10
+			            	        }
+			            	    ],
+			            	    yAxis : [
+			            	        {
+			            	            type : 'value'
+			            	        }
+			            	    ],
+			            	    series : [
+			            	        {
+			            	            name: 'series1',
+			            	            type: 'line',
+			            	            showAllSymbol: true,
+			            	            data: (function () {
+			            	                var d = [];
+			            	                var len = 0;
+			            	                var now = new Date();
+			            	                var value;
+			            	                while (len++ < 31) {
+			            	                    d.push([
+			            	                        new Date(2014, 7, len),
+			            	                        (Math.random()*100).toFixed(2) - 0
+			            	                    ]);
+			            	                }
+			            	                return d;
+			            	            })()
+			            	        }
+			            	    ]
+			            	};
+			                chart1.hideLoading();
+			                chart1.setOption(option); 
+			            	
+			                chart2.setOption(option);
+			                
+			            }
+			        );
+		</script>
+	</body>
+</html>

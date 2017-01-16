@@ -1,0 +1,25 @@
+# gradle
+.gradle
+**/build
+**/logs
+**/bin
+**/work
+
+# eclipse
+.project
+.classpath
+.settings
+**/.*
+
+# nSite
+**/config/*.xml
+**/config/*.yml
+**/config/*.properties
+**/config/*.cfg
+**/config/*.ini
+
+**/bower_components
+**/node_modules
+
+# mac
+.DS_Store

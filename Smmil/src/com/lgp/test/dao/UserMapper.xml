@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.lgp.test.dao.UserMapper">
+
+    <select id="countAll" resultType="int">  <!-- 查询表中记录总数 -->
+        select count(*) c from user_info
+    </select>
+    
+    <select id="selectAll" resultType="UserInfo">    <!-- 查询表中的所有用户 -->
+        select * from user_info order by userid asc
+    </select>
+    
+    <insert id="insert" parameterType="UserInfo">    <!-- 向数据库中插入用户 -->
+        insert into user_info(userid,userHome,useraddress) values(#{userId},#{userHome},#{userAddress})
+    </insert>
+    
+    <update id="update" parameterType="UserInfo">     <!-- 更新库中的用户 -->
+        update user_info set userhome=#{userHome},useraddress=#{userAddress} where userid=#{userId}
+    </update>
+    
+    <delete id="delete" parameterType="String">    <!-- 删除用户 -->
+        delete from user_info where userid=#{userId}
+    </delete>
+    
+    <select id="find" parameterType="String" resultType="UserInfo"> <!-- 根据用户名查找用户 -->
+        select * from user_info where userid=#{userId}
+    </select>
+</mapper>

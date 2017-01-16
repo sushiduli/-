@@ -1,0 +1,18 @@
+{
+	"Central": {
+		"Manager": {
+			"TITLE": "平台管理",
+			"nav_left": {
+				"STATIONS": "台站管理",
+				"ROLES": "角色管理",
+				"USERS": "人员管理",
+				"SERVICES": "服务管理",
+				"SESSIONS": "登录日志",
+				"ONLINES": "当前会话",
+				"WORKITEMS": "任务监控",
+				"PROCESS": "流程监控",
+				"JOBS": "后台任务"
+			}
+		}
+	}
+}

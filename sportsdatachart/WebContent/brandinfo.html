@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+		<title>品牌特征</title>
+
+		<link rel="stylesheet" href="css/info.css" />
+		<style type="text/css">
+			
+			.content{
+				background-color: #908F94;
+				width: 100%;
+				height: 600px;			
+			}
+			.content1 {
+				float:left;
+				border:0px solid #9C0801;
+				width: 200px;	
+				display: none;	
+				padding: 10px 0px 0px 10px;
+				background-color: #9C0801;
+				height: 590px;	
+			}
+			.content2 {
+				float:left;
+				border:0px solid #9C0801;
+				width: 1000px;
+				height:560px;
+				margin:10px 0px 10px 0px;
+				margin-left: 50px;
+			}
+		</style>
+		
+		<script type="text/javascript" src="js/texiao.js">
+		</script>
+		<script type="text/javascript">
+		
+		</script>
+
+	</head>
+
+	<body >
+
+		
+		<div class="navleft" >
+			<ul>
+				<li>
+					<a href="index.html"><img src="img/page1_main.png" border="none" /></a>
+				</li>
+				<li>
+					<a href="index.html"><img src="img/page1_back.png" border="none" /></a>
+				</li>
+				<li style="margin-top: 50px;" class="navli" id="li1">
+					<div >
+						<a href="showuser.html">用户画像</a>
+					</div>
+				</li>
+				<li class="navli" id="li2" >
+					<div>
+						<a href="lifeinfo.html">生活特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li3" >
+					<div >
+						<a href="regioninfo.html">地域特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li4" >
+					<div >
+						<a href="interestinfo.html">兴趣特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li5" >
+					<div >
+						<a href="consumeinfo.html">消费特征</a>
+					</div>
+				</li>
+				<li class="navliclick" style="margin-top: -10px;"  id="li6" >
+					<div >
+						<a href="brandinfo.html">品牌特征</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="rcontent">
+			<div class="nav1">
+				<table>
+					<tr>
+						<td class="nav1td" align="left"><a>体育大数据平台</a></td>	
+						<td id="td1" class="nav1td2" align="center"><a >品牌认知分析</a></td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="nav2">
+				<table>
+					<tr>
+						<td class="nav2td" align="center"><a>商业决策</a></td>
+						<td><a id="yd" onclick="showyd()">引导页</a></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="content">
+
+				<div class="content1" id="div0">
+					当前引导页
+					一级层叠控制。每一个不同的zlevel将产生一个独立的canvas，
+					相同zlevel的组件或图标将在同一个canvas上渲染。
+					zlevel越高越靠顶层，canvas对象增多会消耗更多的内存和性能
+					，并不建议设置过多的zlevel，大部分情况可以通过二级层叠控制z实现层叠控制。
+				</div>
+				
+				<div class="content2">
+					<div id="div1" style="height: 100%;width: 100%;"></div>
+				</div>
+			
+			</div>
+		</div>
+
+		<script src="js/build/dist/echarts.js"></script>
+		<script type="text/javascript">
+			// 路径配置
+			        require.config({
+			            paths: {
+			                echarts: 'js/build/dist'
+			            }
+			        });
+			        // 使用
+			        require(
+			            [
+			                'echarts',
+			                'echarts/chart/funnel',
+			                'echarts/chart/pie',
+			                'echarts/chart/line',
+			                'echarts/chart/bar'
+			            ],
+			            
+			            function (ec) {
+			                // 基于准备好的dom，初始化echarts图表
+			                var chart1 = ec.init(document.getElementById('div1')); 
+							
+			                chart1.showLoading({
+			        		    text : '数据加载中.....',
+			        		    effect : 'spin',
+			        		    textStyle : {
+			        		        fontSize : 20
+			        		    }
+			        		});
+			                
+			            var option = {
+			            	    title : {
+			            	        text : '品牌特征',
+			            	        subtext : '消费占比'
+			            	    },
+			            	    tooltip : {
+			            	        trigger: 'axis',
+			            	        formatter : function (params) {
+			            	            var date = new Date(params.value[0]);
+			            	            data = date.getFullYear() + '-'
+			            	                   + (date.getMonth() + 1) + '-'
+			            	                   + date.getDate() ;
+			            	            return data + '<br/>'
+			            	                   + params.value[1];
+			            	        }
+			            	    },
+			            	    toolbox: {
+			            	        show : true,
+			            	        feature : {
+			            	            mark : {show: true},
+			            	            dataView : {show: true, readOnly: false},
+			            	            restore : {show: true},
+			            	            saveAsImage : {show: true}
+			            	        }
+			            	    },
+			            	    dataZoom: {
+			            	    	handleColor: 'rgba(128,43,16,0.8)',
+			            	    	fillerColor: 'rgba(38,143,26,0.6)',
+			            	        show: true,
+			            	        start : 70
+			            	    },
+			            	    legend : {
+			            	        data : ['全球购消费金额占比','聚划算消费金额占比','淘宝消费金额占比','天猫消费笔数占比']
+			            	    },
+			            	    grid: {
+			            	        y2: 80
+			            	    },
+			            	    xAxis : [
+			            	        {
+			            	            type : 'time'
+			            	        }
+			            	    ],
+			            	    yAxis : [
+			            	        {
+			            	            type : 'value'
+			            	        },
+			            	        {
+			            	        	type: 'value',
+			            	        	spiltNumber:10
+			            	        }
+			            	        
+			            	    ],
+			            	    series : [
+			            	        {
+			            	            name: '全球购消费金额占比',
+			            	            type: 'line',
+			            	            showAllSymbol: true,
+			            	            data: (function () {
+			            	                var d = [];
+			            	                var len = 0;
+			            	                var now = new Date();
+			            	                var value;
+			            	                while (len++ < 180) {
+			            	                    d.push([
+			            	                        new Date(2015, 2, 1,(len-1)*24),
+			            	                        (Math.random()*100).toFixed(2) - 0
+			            	                    ]);
+			            	                }
+			            	                return d;
+			            	            })()
+			            	        },
+			            	        {
+			            	            name: '聚划算消费金额占比',
+			            	            type: 'line',
+			            	            showAllSymbol: true,
+			            	            data: (function () {
+			            	                var d = [];
+			            	                var len = 0;
+			            	                var now = new Date();
+			            	                var value;
+			            	                while (len++ < 180) {
+			            	                    d.push([
+			            	                        new Date(2015, 2, 1,(len-1)*24),
+			            	                        (Math.random()*100).toFixed(2) - 0
+			            	                    ]);
+			            	                }
+			            	                return d;
+			            	            })()
+			            	        },
+			            	        {
+			            	            name: '淘宝消费金额占比',
+			            	            type: 'line',
+			            	            showAllSymbol: true,
+			            	            data: (function () {
+			            	                var d = [];
+			            	                var len = 0;
+			            	                var now = new Date();
+			            	                var value;
+			            	                while (len++ < 180) {
+			            	                    d.push([
+			            	                        new Date(2015, 2, 1,(len-1)*24),
+			            	                        (Math.random()*100).toFixed(2) - 0
+			            	                    ]);
+			            	                }
+			            	                return d;
+			            	            })()
+			            	        },
+			            	        {
+			            	            name: '天猫消费笔数占比',
+			            	            type: 'line',
+			            	            showAllSymbol: true,
+			            	            yAxisIndex: 1,
+			            	            data: (function () {
+			            	                var d = [];
+			            	                var len = 0;
+			            	                var now = new Date();
+			            	                var value;
+			            	                while (len++ < 180) {
+			            	                    d.push([
+			            	                        new Date(2015, 2, 1,(len-1)*24),
+			            	                        (Math.random()*10).toFixed(1) - 0
+			            	                    ]);
+			            	                }
+			            	                return d;
+			            	            })()
+			            	        }
+			            	        
+			            	        
+			            	    ]
+			            	};
+			                
+			                chart1.hideLoading();
+			                chart1.setOption(option); 
+			            	
+			            }
+			        );
+		</script>
+	</body>
+
+</html>

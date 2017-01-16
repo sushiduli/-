@@ -1,0 +1,19 @@
+{
+	"Central": {
+		"Manager": {
+			"TITLE": "Platform Management",
+			"nav_left": {
+				"STATIONS": "Stations",
+				"ROLES": "Roles",
+				"USERS": "Users",
+				"SERVICES": "Services",
+				"SESSIONS": "Sessions",
+				"ONLINES": "Online Sessions",
+				"WORKITEMS": "WorkItems",
+				"PROCESS": "Process",
+				"JOBS": "Jobs",
+				"TOGETHER":"Together"
+			}
+		}
+	}
+}

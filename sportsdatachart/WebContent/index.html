@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+		<title>首页</title>
+		<style type="text/css">
+			body {
+				background: #EBEBEE;
+				width: 100%;
+				min-width: 1300px;
+			}
+			.groudbody{
+				background-color: #908F94;
+				border: 1px solid #908F94;
+				margin: 0px 10px 0px 10px;
+			}
+			
+			.groudmain{
+				background-color: #9C0801;
+				border: 1px solid #908F94;
+				margin: 0px 10px 20px 10px;
+			}
+			
+			.logo{
+					width: 30%;
+					height: 50px;
+			}
+			
+			.sportdata{
+				font-family: STHeitiSC-Light;
+				font-size: 50px;
+				color: #EBEBEE;
+				line-height: 51px;
+			}
+			
+			
+			.divli{
+				width: 100%;
+			}
+			
+			.divli ul{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.divli ul li{
+				float: left;
+				margin: 0px 15px 10px 35px;
+			}
+			
+			.divli ul li a{
+				font-family: STHeitiSC-Light;
+				font-size: 40px;
+				color: #EBEBEE;
+				line-height: 41px;
+				text-decoration: none;
+			}
+			.divli ul li img{
+				max-height:350px;
+				vertical-align: middle;
+			}
+			
+			.booter{
+				background-color: #9C0801;
+				width: 100%;
+				margin-top: 20px;
+			}
+			
+			
+			.booter a{
+				font-size: 20px;
+				color: #EBEBEE;
+				line-height: 21px;
+			}
+			
+			.booter img{
+					height: 30px;
+			}
+			
+			.footer a{
+				line-height: 21px;
+			}
+			
+		</style>
+	</head>
+	<body> 
+	  	<div class="groudbody" align="center">
+			<div class="groudmain">
+				<div align="center">
+					<img  src="img/page1_Logo.png" class="logo" align="center"/> 
+					<a class="sportdata">体育大数据</a>
+				</div>
+				
+				<div class="divli" >
+					<ul>
+						<li><a href="showuser.html">商业决策</a><img src="img/page1_bn.png" /></li>
+						<li><a>数据赛事</a><img src="img/page1_bn.png"/></li>
+						<li><a>数据报道</a><img src="img/page1_bn.png" /></li>
+						<li><a>虚拟视觉</a><img src="img/page1_bn.png"/></li>
+						<li><a>需求中...</a><img src="img/page1_bn.png"/></li>
+					</ul>	
+					<img src="img/page1_bg.png" style="margin-top: -100px;width: 100%"/>	
+				</div>
+
+			
+			<div class="booter">
+					<table width="100%">
+						
+						<tr>
+							<td align="left" >
+							<a>Demo数据源<br/><br/>Version 0.01</a>
+							</td>
+							
+							<td align="right"> 
+							<table>
+							<tr >
+								<td style="padding-right: 50px;"> 
+								<a>客户第一手数据集</a><br />
+								<a id="weibo">0</a><br />
+								<img src="img/page1_PC.png" align="center" />
+								<a>体育球迷样本</a>
+							</td>
+							<td style="padding-right: 50px;">
+								<a>客户第一手数据集</a><br />
+								<a id="weixin">0</a><br />
+								<img src="img/page1_Phone.png" align="center"/>
+								<a>体育球迷样本</a>
+							</td>
+							<td style="padding-right: 20px;">
+								<a>第三方全网数据源</a><br />
+								<a id="ali">0</a><br />
+								<img src="img/page1_WEB.png" align="center"/>
+								<a>某全网数据</a>
+							</td>
+								
+							</tr>	
+							</table>
+							</td>
+						</tr>
+					</table>
+			</div>
+			
+			</div>  	
+
+			<div class="footer" >
+				
+				<table width="100%">
+					<tr>
+						
+						<td align="left">
+							<a>体育大数据工作室出品<br/>
+								2015 新奥特(视频)技术有限公司
+							</a>							
+						</td>
+						
+						<td align="right">
+							<table style="padding-right: 20px;">
+							<tr >
+								<td>
+								<a>CDV媒体大数据体系</a>
+								</td>
+								<td>
+									<a>新闻大数据工作室</a>
+								</td>
+								<td>
+									<a>娱乐大数据工作室</a>
+								</td>
+								<td>
+									<a>运营商大数据工作室</a>
+								</td>
+								
+							</tr>
+							
+							</table>		
+									
+						</td>
+						
+						
+					</tr>
+				</table>
+
+			</div>
+				
+				
+	  	</div>
+	  	
+	  	<script type="text/javascript">
+	  	var a = 0;
+	  	var b = 0;
+	  	var c = 0;
+	  		
+	  	var d = self.setInterval("riseData()",10);
+	  	
+		function riseData(){
+			
+			a = a+2102*2; 
+			
+			if(a>=900000){
+				document.getElementById("weixin").innerHTML='900,000+';
+			}else{
+				document.getElementById("weixin").innerHTML=a;
+			}
+			
+			b = b+10033*2;
+			if(b>=5000000){
+				document.getElementById("weibo").innerHTML='5,000,000+';
+			}else{
+				document.getElementById("weibo").innerHTML=b;
+			}
+			
+			c = c+2000054*2;
+			if(c>=1000000000){
+				document.getElementById("ali").innerHTML='1,000,000,000+';
+			}else{
+				document.getElementById("ali").innerHTML=c;
+			}
+		}
+		
+		setTimeout(function(){ clearInterval(d); }, 5000);
+			
+		</script>
+	  	
+	</body>
+</html>

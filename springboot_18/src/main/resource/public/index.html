@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh_CN" data-ng-app="pmApp">
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta http-equiv="x-ua-compatible" content="IE=9">
+		<!-- 第三方 css -->
+		<link rel="stylesheet" href="3rd/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="3rd/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="3rd/bootstrap/css/bootstrap-theme.min.css">
+		
+		<!-- 自有 css -->
+		<link rel="stylesheet" href="css/pm.css">
+		<link rel="stylesheet" href="css/login.css">
+		<link rel="stylesheet" href="css/user.css">
+		
+		<!-- 第三方 js -->
+		<script src="3rd/jquery/jquery.min.js"></script>
+		<script src="3rd/bootstrap/js/bootstrap.min.js"></script>
+		<script src="3rd/jquery-ui.min.js"></script>
+		<script src="3rd/angular.min.js"></script>
+		<script src="3rd/angular-resource.min.js"></script>
+		<script src="3rd/angular-route.min.js"></script>
+		<script src="3rd/ng-contextmenu.min.js"></script>
+		<script src="3rd/ng-contextmenu.patch.js"></script>
+		<script src="3rd/ui-bootstrap-tpls.min.js"></script>
+		<!-- 自有js -->
+		<script src="js/proxy.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/login.js"></script>
+		<script src="js/statics.js"></script>
+		<script src="js/user.js"></script>
+	
+		
+	</head>
+	<body data-ng-controller="MainController">
+		<header id="nv_header" data-ng-if="!isLogoning">
+			<nav>
+				<div>XXX系统</div>
+			</nav>
+		</header>
+		<nav id="nv_left" data-ng-if="!isLogoning">
+			<div class="menu_container">
+				<ul class="menu">
+					<li data-ng-class="{active:subpage=='menu_manage'}">
+						<a href="#/manage/menu"><i class="fa fa-fw fa-group"></i><span class="left_menu_title">菜单管理</span></a>
+					</li>
+					<li data-ng-class="{active:subpage=='statics'}">
+						<a href="#/manage/statics"><i class="fa fa-fw fa-group"></i><span class="left_menu_title">统计管理</span></a>
+					</li>
+				</ul>
+			</div>
+			<div class="hr_black"></div>
+			<ul class="bottom_tool">
+				<li>
+					<a id="menu_close" href="javascript:;" title="折叠"><i class="glyphicon glyphicon-step-backward"></i></a>
+				</li>
+			</ul>
+		</nav>
+		<article id="nv_content" data-ng-view></article>
+		<footer id="nv_footer">Copyright &copy; 2016-2026.China HeNan ChangYuan.</footer>
+		<div id="nv_messages" data-ng-if="messages.length > 0">
+			<div class="alert fade in" role="alert" data-ng-repeat="msg in messages" data-ng-class="{'alert-danger':msg.level=='danger', 'alert-info':msg.level=='info', 'alert-warning':msg.level=='warning', 'alert-success':msg.level=='success', 'alert-dismissible': msg.closable}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" data-ng-if="msg.closable" data-ng-click="msg.close()">
+					<span aria-hidden="true">&times;</span>
+				</button>{{msg.text}}</div>
+		</div>		
+	</body>
+</html>

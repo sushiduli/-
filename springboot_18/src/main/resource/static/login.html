@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>登陆页</title>
+<link rel="stylesheet"  href="3rd/pure/pure-min.css"/>
+<link rel="stylesheet" href="css/login.css"/>
+<script src="js/login.js"></script>
+<script src="js/ajaxProxy.js"></script>
+</head>
+<body>
+<form class="pure-form pure-g">
+  <fieldset class="pure-group pure-u-1">
+    <input id="username" name="username" type="text" class="pure-input-1" placeholder="用户名">
+    <input id="password" name="password" type="password" class="pure-input-1" placeholder="密码">
+  </fieldset>
+  <!-- 添加class 'hidden' 可去除验证码验证 -->
+  <div id="ewcode" class="pure-group pure-input-1 hidden">
+    <div class="pure-u-1-2">
+    	<input id="autoRandom" class="pure-input-1 pure-button"  value=""/>
+    </div>
+    <div class="pure-u-1-2">
+      <input  id="inputRandom" type="text" class="pure-input-1" placeholder="验证码">
+    </div>
+  </div>
+  <div class="pure-group pure-input-1">
+    <button type="button" class="pure-button pure-input-1 pure-button-primary" onclick="logon()">登录</button>
+  </div>
+</form>
+</body>
+</html>

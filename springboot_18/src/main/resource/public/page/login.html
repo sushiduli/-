@@ -1,0 +1,20 @@
+<div id="login" class="view">
+<div class="login-container">
+		<h3>用户登录</h3>
+		<form name="FormLogin" autocomplete="off" novalidate data-submitted="submitted">
+			<div class="form-group has-warning has-feedback" data-ng-class="{'has-error': FormLogin.principal.$invalid && submitted}">
+				<input type="text" class="form-control" name="principal" required tabindex="0"  data-focus-me="true" data-select-on-focus="true" data-ng-model="principal" />
+				<span class="glyphicon glyphicon-user form-control-feedback"></span>
+			</div>
+			<div class="form-group has-warning has-feedback" data-ng-class="{'has-error': form.password.$invalid && submitted}">
+				<input type="password" class="form-control" name="password" required tabindex="0" data-ng-model="password" />
+				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+			</div>
+			<div>
+				<button class="btn btn-primary" id="btn-login" tabindex="0" data-ng-click="submit()">登录</button>
+			</div>
+			<div class="info" data-ng-show="showMessage" data-ng-class="{success: session.isLogged}">{{errorMessage}}</div>
+		</form>
+	</div>
+
+</div>

@@ -1,0 +1,185 @@
+@charset "utf-8";
+/* 全局样式 */
+@media screen and (max-width:400px) {
+}
+
+@media screen and (max-width:800px) {
+}
+
+@media screen and (max-width:1000px) {
+}
+
+@media (min-width: 1411px) {
+
+}
+
+html {
+	-webkit-text-size-adjust: none;
+}
+
+body {
+	overflow: hidden;
+	font-family: "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: #808040;
+}
+/* 顶端导航样式 */
+#nv_header {
+	background-image: linear-gradient(to bottom, #3c3c3c 0, #222 100%);
+	height: 50px;
+}
+
+#nv_header nav{
+	height: 100%;
+	padding: 10px 10px;
+}
+
+#nv_header div{
+	height:100%;
+	margin-left: 45%;
+	vertical-align:middle;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;	
+}
+
+/* 左侧导航样式 */
+#nv_left {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	bottom: 20px;
+	width: 180px;
+	background: #333645;
+	font-family: "微软雅黑", "Helvetica Neue", Helvetica, "Hiragino Sans GB",
+		"Segoe UI", "Microsoft Yahei", Tahoma, Arial, STHeiti, sans-serif;
+}
+
+#nv_left .menu_container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 52px;
+	overflow: auto;
+}
+
+#nv_left .menu {
+	padding: 0;
+	color: #c7ced9;
+	overflow: auto;
+	display: block;
+}
+
+#nv_left .menu>li {
+	list-style: none;
+}
+
+#nv_left .menu>li>a {
+	color: #c7ced9;
+	line-height: 50px;
+	font-size: 13px;
+	display: block;
+	padding-left: 30px;
+	position: relative;
+}
+
+
+#nv_left .menu>.active>a {
+	color: #fff;
+	background: #282a37;
+	font-size: 14px;
+}
+
+#nv_left .menu>li>a:focus, #nv_left .menu>li>a:active {
+	outline: none;
+}
+
+#nv_left .menu>.active>a:after {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	content: '';
+	background: #5d9cec !important;
+	width: 4px;
+}
+
+#nv_left .menu .left_menu_title {
+	margin-left: 15px;
+}
+<!-- 用于隐藏 -->
+#nv_left .only-icon .left_menu_title {
+	display: none;
+}
+
+
+
+
+#nv_left .hr_black {
+	position: absolute;
+	bottom: 50px;
+	left: 0;
+	right: 0;
+	border-top: solid 1px #111415;
+	border-bottom: solid 1px #646668;
+}
+
+#nv_left .bottom_tool {
+	display:none;
+	position: absolute;
+	bottom: 0;
+	left: 20%;
+	padding: 0;
+	margin: 15px 10px;
+}
+
+#nv_left .bottom_tool li {
+	float: left;
+	width: 60px;
+	text-align: center;
+	list-style: none;
+}
+
+#nv_left .bottom_tool li a {
+	color: #c7ced9;
+}
+
+#nv_left .bottom_tool li a:hover {
+	color: #fff;
+}
+
+/* 内容样式*/
+#nv_content {
+	position: fixed;
+	top: 50px;
+	right: 0;
+	bottom: 20px;
+	left: 180px;
+	background: #f9f9f7;
+	box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+	overflow: hidden;
+}
+
+/* 底部 */
+#nv_footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 20px;
+	font-size: 8px;
+	text-align: center;
+	border-top: 1px solid #333645;
+	background: #fff;
+}
+
+#nv_messages {
+	position: fixed;
+	top: 50px;
+	left: 50%;
+	max-width: 50%;
+	min-width: 240px;
+	transform: translateX(-50%);
+}
+
+

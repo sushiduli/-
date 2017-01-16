@@ -22,6 +22,7 @@ dependencies {
 	compile 'javax.persistence:persistence-api:1.0.2'
 	
 	compile project(':eo-common')
+	compile project(':eo-login')
 	
 	// Central
 	compile 'com.cdv.nsite.central:nsite-central-common:3.0.0-SNAPSHOT'

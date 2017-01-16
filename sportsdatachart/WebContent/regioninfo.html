@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+		<title>地域特征</title>
+
+		<link rel="stylesheet" href="css/info.css" />
+		<style type="text/css">
+			 .content {
+				width: 100%;
+				min-width:800px;
+				height: 600px;
+				text-align: center;
+				margin: 0 auto;
+				background:  #908F94;
+			}
+			.content1 {
+				width: 20%;
+				padding: 20px 20px 0px 20px;
+				display: none;
+				float: left;
+			}
+			.content2 {
+				float: left;
+				height: 600px;
+				width: 76%;
+				float: left;
+				position:relative;
+			}
+			
+			.content3 {
+				background-color: #908F94;
+				float: left;
+				height: 600px;
+				width: 100%;
+				margin-left: 20px;
+				position:absolute;
+			}
+		</style>
+
+		<script type="text/javascript" src="js/texiao.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	</head>
+
+	<body >
+
+		
+		<div class="navleft" >
+			<ul>
+				<li>
+					<a href="index.html"><img src="img/page1_main.png" border="none" /></a>
+				</li>
+				<li>
+					<a href="index.html"><img src="img/page1_back.png" border="none" /></a>
+				</li>
+				<li style="margin-top: 50px;" class="navli" id="li1">
+					<div >
+						<a href="showuser.html">用户画像</a>
+					</div>
+				</li>
+				<li class="navli"  id="li2" >
+					<div>
+						<a href="lifeinfo.html">生活特征</a>
+					</div>
+				</li>
+				<li class="navliclick" style="margin-top: -10px;" id="li3" >
+					<div >
+						<a href="regioninfo.html">地域特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li4" >
+					<div >
+						<a href="interestinfo.html">兴趣特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li5" >
+					<div >
+						<a href="consumeinfo.html">消费特征</a>
+					</div>
+				</li>
+				<li class="navli" id="li6" >
+					<div >
+						<a href="brandinfo.html">品牌特征</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="rcontent">
+			<div class="nav1">
+				<table>
+					<tr>
+						<td class="nav1td" align="left"><a>体育大数据平台</a></td>	
+						<td id="td1" class="nav1td2" align="center"><a onclick="showchart(1)">出行偏好</a></td>
+						<td id="td2" class="nav1td3" align="center"><a onclick="showchart(2)">地域偏好预测</a></td>
+					</tr>
+				</table>
+			</div>
+
+
+			<div class="nav2">
+				<table>
+					<tr>
+						<td class="nav2td" align="center"><a>商业决策</a></td>
+						<td><a id="yd" onclick="showyd()">引导页</a></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="content">
+
+				<div class="content1" id="div0">
+					当前引导页
+				</div>
+
+				<div class="content2" >
+				
+				<div class="content3" id="div2"></div>
+
+				
+				<div class="content3" id="div1" >
+						<div id="main1" style="height: 480px;width:500px;float: left;" ></div>
+						<div id="main2" style="height: 400px;float: left;width: 400px;"></div>		
+				</div>
+				</div>
+
+				
+
+			</div>
+		</div>
+
+		<script src="js/build/dist/echarts.js"></script>
+		<script type="text/javascript">
+			// 路径配置
+			        require.config({
+			            paths: {
+			                echarts: 'js/build/dist'
+			            }
+			        });
+			        // 使用
+			        require(
+			            [
+			                'echarts',
+			                'echarts/chart/pie',
+			                'echarts/chart/line',
+			                'echarts/chart/map'
+			            ],
+			            
+			            function (ec) {
+			                // 基于准备好的dom，初始化echarts图表
+			                var chart1 = ec.init(document.getElementById('main1'));
+			                
+			                var chart2 = ec.init(document.getElementById('main2'));
+							
+			                chart1.showLoading({
+			        		    text : '数据加载中.....',
+			        		    effect : 'spin',
+			        		    textStyle : {
+			        		        fontSize : 20
+			        		    }
+			        		});
+			                
+			                chart2.showLoading({
+			        		    text : '数据加载中.....',
+			        		    effect : 'spin',
+			        		    textStyle : {
+			        		        fontSize : 20
+			        		    }
+			        		});
+			                
+			            var legendData = ["海岛","温泉","滑雪","漂流","博物馆",
+			                              "主题乐园","交通餐饮","人文建筑","实景演出",
+			                              "水乡古镇","海洋公园","自然风景","原生态黎苗文化"];
+			                
+			            var option1 = {
+			                 title : {
+			                	x:'center',
+                 	        	text: '预测景点偏好',
+                 	        	subtext: '数据来自微博'
+                 	    },
+                 	    tooltip : {
+                 	        trigger: 'item',
+                 	        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                 	    },
+                 	    legend: {
+                 	    	x:'left', 
+		                	orient : 'vertical',
+                 	        data:legendData
+                 	    },
+                 	    toolbox: {
+                 	        show : true,
+                 	       	orient: 'vertical',
+                 	       	y:'center',
+                 	        feature : {
+                 	            dataView : {show: true, readOnly: false},
+                 	            restore : {show: true},
+                 	            saveAsImage : {show: true}
+                 	        }
+                 	    },
+                 	    calculable : true,
+                 	    series : [
+							{
+							    name:'面积模式',
+							    type:'pie',
+							    radius : [30, 110],
+							    center : ['50%', 200],
+							    roseType : 'area',
+							    data:(function(){
+							    	var d = [];
+				                    var len =-1;
+				                    while (len++ < legendData.length-1) {
+				                        d.push(
+											{
+												value:20*(len+1), 
+												name:legendData[len]
+											}
+				                        );
+				                    }
+				                    return d;
+				                })()	         
+							}
+                 	    ]
+			       };
+			            chart1.hideLoading();
+		                chart1.setOption(option1); 
+		                
+		                
+		                var cityData = ["北京","上海","广州","深圳","天津","南京","香港","澳门","郑州","石家庄"]; 
+				           
+				        var option2 = {
+				        		title:{
+				        			text: '国内机票目的地城市top10',
+				        			subtext: '数据来自微博',
+				        			x:'center'
+				        		},
+		                 	    tooltip : {
+		                 	        trigger: 'item',
+		                 	        formatter: '{a} <br/>{b} : {c} ({d}%)'
+		                 	    },
+		                 	    legend: {
+		                 	    	x:'left', 
+				                	orient : 'vertical',
+		                 	        data:cityData
+		                 	    },
+		                 	    toolbox: {
+		                 	        show : true,
+		                 	       	orient: 'vertical',
+		                 	       	y:'center',
+		                 	        feature : {
+		                 	            dataView : {show: true, readOnly: false},
+		                 	            restore : {show: true},
+		                 	            saveAsImage : {show: true}
+		                 	        }
+		                 	    },
+		                 	    calculable : true,
+		                 	    series : [
+									{
+									    name:'面积模式',
+									    type:'pie',
+									    radius : [30, 110],
+									    center : ['50%', 200],
+									    roseType : 'area',
+									    data:(function(){
+								        	var d = [];
+						                    var len =-1;
+						                    while (len++ < cityData.length-1) {
+						                        d.push(
+													{
+														value:14*(len+1), 
+														name:cityData[len]
+													}
+						                        );
+						                    }
+						                    return d;
+								        })()
+									}
+		                 	    ]
+				        };
+				          
+			                chart2.hideLoading();
+			                chart2.setOption(option2); 
+		                
+			                
+			                var chart3 = ec.init(document.getElementById('div2'));
+			                var option3 = {
+			                	    title : {
+			                	        text: 'iphone销量',
+			                	        subtext: '纯属虚构',
+			                	        x:'center'
+			                	    },
+			                	    tooltip : {
+			                	        trigger: 'item'
+			                	    },
+			                	    legend: {
+			                	        orient: 'vertical',
+			                	        x:'left',
+			                	        data:['iphone3','iphone4','iphone5']
+			                	    },
+			                	    dataRange: {
+			                	        min: 0,
+			                	        max: 2500,
+			                	        x: 'left',
+			                	        y: 'bottom',
+			                	        text:['高','低'],           // 文本，默认为数值文本
+			                	        calculable : true
+			                	    },
+			                	    toolbox: {
+			                	        show: true,
+			                	        orient : 'vertical',
+			                	        x: 'right',
+			                	        y: 'center',
+			                	        feature : {
+			                	            mark : {show: true},
+			                	            dataView : {show: true, readOnly: false},
+			                	            restore : {show: true},
+			                	            saveAsImage : {show: true}
+			                	        }
+			                	    },
+			                	    roamController: {
+			                	        show: true,
+			                	        x: 'right',
+			                	        mapTypeControl: {
+			                	            'china': true
+			                	        }
+			                	    },
+			                	    series : [
+			                	        {
+			                	            name: 'iphone3',
+			                	            type: 'map',
+			                	            mapType: 'china',
+			                	            roam: false,
+			                	            itemStyle:{
+			                	                normal:{label:{show:true}},
+			                	                emphasis:{label:{show:true}}
+			                	            },
+			                	            data:[
+			                	                {name: '北京',value: Math.round(Math.random()*1000)},
+			                	                {name: '天津',value: Math.round(Math.random()*1000)},
+			                	                {name: '上海',value: Math.round(Math.random()*1000)},
+			                	                {name: '重庆',value: Math.round(Math.random()*1000)},
+			                	                {name: '河北',value: Math.round(Math.random()*1000)},
+			                	                {name: '河南',value: Math.round(Math.random()*1000)},
+			                	                {name: '云南',value: Math.round(Math.random()*1000)},
+			                	                {name: '辽宁',value: Math.round(Math.random()*1000)},
+			                	                {name: '黑龙江',value: Math.round(Math.random()*1000)},
+			                	                {name: '湖南',value: Math.round(Math.random()*1000)},
+			                	                {name: '安徽',value: Math.round(Math.random()*1000)},
+			                	                {name: '山东',value: Math.round(Math.random()*1000)},
+			                	                {name: '新疆',value: Math.round(Math.random()*1000)},
+			                	                {name: '江苏',value: Math.round(Math.random()*1000)},
+			                	                {name: '浙江',value: Math.round(Math.random()*1000)},
+			                	                {name: '江西',value: Math.round(Math.random()*1000)},
+			                	                {name: '湖北',value: Math.round(Math.random()*1000)},
+			                	                {name: '广西',value: Math.round(Math.random()*1000)},
+			                	                {name: '甘肃',value: Math.round(Math.random()*1000)},
+			                	                {name: '山西',value: Math.round(Math.random()*1000)},
+			                	                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+			                	                {name: '陕西',value: Math.round(Math.random()*1000)},
+			                	                {name: '吉林',value: Math.round(Math.random()*1000)},
+			                	                {name: '福建',value: Math.round(Math.random()*1000)},
+			                	                {name: '贵州',value: Math.round(Math.random()*1000)},
+			                	                {name: '广东',value: Math.round(Math.random()*1000)},
+			                	                {name: '青海',value: Math.round(Math.random()*1000)},
+			                	                {name: '西藏',value: Math.round(Math.random()*1000)},
+			                	                {name: '四川',value: Math.round(Math.random()*1000)},
+			                	                {name: '宁夏',value: Math.round(Math.random()*1000)},
+			                	                {name: '海南',value: Math.round(Math.random()*1000)},
+			                	                {name: '台湾',value: Math.round(Math.random()*1000)},
+			                	                {name: '香港',value: Math.round(Math.random()*1000)},
+			                	                {name: '澳门',value: Math.round(Math.random()*1000)}
+			                	            ]
+			                	        },
+			                	        {
+			                	            name: 'iphone4',
+			                	            type: 'map',
+			                	            mapType: 'china',
+			                	            itemStyle:{
+			                	                normal:{label:{show:true}},
+			                	                emphasis:{label:{show:true}}
+			                	            },
+			                	            data:[
+			                	                {name: '北京',value: Math.round(Math.random()*1000)},
+			                	                {name: '天津',value: Math.round(Math.random()*1000)},
+			                	                {name: '上海',value: Math.round(Math.random()*1000)},
+			                	                {name: '重庆',value: Math.round(Math.random()*1000)},
+			                	                {name: '河北',value: Math.round(Math.random()*1000)},
+			                	                {name: '安徽',value: Math.round(Math.random()*1000)},
+			                	                {name: '新疆',value: Math.round(Math.random()*1000)},
+			                	                {name: '浙江',value: Math.round(Math.random()*1000)},
+			                	                {name: '江西',value: Math.round(Math.random()*1000)},
+			                	                {name: '山西',value: Math.round(Math.random()*1000)},
+			                	                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+			                	                {name: '吉林',value: Math.round(Math.random()*1000)},
+			                	                {name: '福建',value: Math.round(Math.random()*1000)},
+			                	                {name: '广东',value: Math.round(Math.random()*1000)},
+			                	                {name: '西藏',value: Math.round(Math.random()*1000)},
+			                	                {name: '四川',value: Math.round(Math.random()*1000)},
+			                	                {name: '宁夏',value: Math.round(Math.random()*1000)},
+			                	                {name: '香港',value: Math.round(Math.random()*1000)},
+			                	                {name: '澳门',value: Math.round(Math.random()*1000)}
+			                	            ]
+			                	        },
+			                	        {
+			                	            name: 'iphone5',
+			                	            type: 'map',
+			                	            mapType: 'china',
+			                	            itemStyle:{
+			                	                normal:{label:{show:true}},
+			                	                emphasis:{label:{show:true}}
+			                	            },
+			                	            data:[
+			                	                {name: '北京',value: Math.round(Math.random()*1000)},
+			                	                {name: '天津',value: Math.round(Math.random()*1000)},
+			                	                {name: '上海',value: Math.round(Math.random()*1000)},
+			                	                {name: '广东',value: Math.round(Math.random()*1000)},
+			                	                {name: '台湾',value: Math.round(Math.random()*1000)},
+			                	                {name: '香港',value: Math.round(Math.random()*1000)},
+			                	                {name: '澳门',value: Math.round(Math.random()*1000)}
+			                	            ]
+			                	        }
+			                	    ]
+			                	};
+			                  chart3.setOption(option3);                     
+			                
+			            }
+			        );
+		</script>
+	</body>
+</html>

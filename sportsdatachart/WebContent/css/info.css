@@ -1,0 +1,85 @@
+			html{
+				width: 100%;
+			}			
+			body{
+				width: 100%;
+				min-width: 1200px;
+			}
+			.navleft {
+				margin-top: 60px;
+				width: 10%;
+				height:650px;
+				float: left;
+				background-color: #c0c0c0;
+				padding: 0;
+				text-align: left;
+			}
+			.navleft ul{
+				text-align: center;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.navleft ul li {
+				height: 50px;
+				margin-top: 10px;
+			}
+			.navleft ul li div a {
+				text-decoration: none;
+			}
+			.navli div {
+				background-image: url(../img/page2_tab2.png);
+				padding: 10px 20px 10px 20px;
+			}
+			.navliclick div {
+				background-image: url(../img/page2_tab1.png);
+				padding: 20px 20px 20px 20px;
+			}
+			.navliclick div a {
+				color: #EBEBEE;
+			}
+			
+			.rcontent {
+				height: 100%;
+				float: right;
+				width: 90%;
+			}
+			.nav1 {
+				background: #908F94;
+				height: 5%;
+			}
+			.nav1td {
+				padding-right: 200px;
+			}
+			.nav1td a {
+				font-size: 50px;
+				color: #EBEBEE;
+			}
+			.nav1td2 a {
+				font-size: 20px;
+			}
+			.nav1td2 {
+				background-image: url(../img/page2_tab4.png);
+				width: 120px;
+				padding: 0 20px 0 20px;
+			}
+			
+			.nav1td3 a {
+				background-image: url(../img/page2_tab2.png);
+				width: 100px;
+				padding: 0 20px 0 20px;
+				font-size: 20px;
+			}
+			.nav2 {
+				background: #908F94;
+				margin-top: 1px;
+				height: 5%;
+			}
+			.nav2td {
+				background-image: url(../img/page2_tab3.png);
+				width: 240px;
+				height: 40px;
+			}
+			.nav2 table tr td a {
+				font-size: 20px;
+			}

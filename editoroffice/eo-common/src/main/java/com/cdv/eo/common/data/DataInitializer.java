@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 import com.cdv.eo.common.utils.Constant;
 import com.cdv.nsite.sss.api.lo.SystemApi;
 import com.cdv.nsite.sss.model.SystemZ;
 import com.cdv.nsite.sss.model.SystemZ.LogoutType;
 
-
+@Component
 public final class DataInitializer implements ApplicationListener<ContextRefreshedEvent>{
 
 	private final static Logger logger = LoggerFactory.getLogger(DataInitializer.class);
